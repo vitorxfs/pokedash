@@ -1,6 +1,6 @@
-# Next Blank App
+# Pokédash
 
-This is a NextJS boilerplate for starting new projects
+This is a Pokémon Dashboard built with NextJS
 
 ## In this project is configured
 
@@ -32,3 +32,4 @@ pnpm run postbuild
 
 The script `postbuild` will create the sitemap as well as the `robots.txt` file for SEO.
 
+The boilerplate used for this project can be found at [vitorxfs/next-blank-app](https://github.com/vitorxfs/next-blank-app/tree/app-directory)

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import Analytics from '@/config/Analytics';
 import defaultMetadata from './metadata';
+import '@/styles/globals.scss';
 
 export const metadata: Metadata = {
   ...defaultMetadata,

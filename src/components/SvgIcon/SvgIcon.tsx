@@ -10,14 +10,16 @@ const sizes = {
 };
 
 export interface SvgIconProps {
+  ariaLabel?: string;
   children?: React.ReactNode;
   size?: keyof typeof sizes;
   viewBoxSize?: number;
 }
 
-const SvgIcon = ({ children, size='md', viewBoxSize }: SvgIconProps) => {
+const SvgIcon = ({ ariaLabel='', children, size='md', viewBoxSize }: SvgIconProps) => {
   return (
     <svg
+      aria-label={ariaLabel}
       width={sizes[size]}
       height={sizes[size]}
       fill="currentColor"

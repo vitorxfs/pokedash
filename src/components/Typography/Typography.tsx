@@ -1,5 +1,6 @@
 import React from 'react';
 import { tv } from 'tailwind-variants';
+import { twMerge } from 'tailwind-merge';
 
 type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl';
 type Weight = 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black';
@@ -48,7 +49,7 @@ export const Typography: React.FC<TypographyProps> = ({ children, className, siz
   const Tag = tag as any;
 
   return (
-    <Tag className={`${variants({ size, weight })} ${className}`}>
+    <Tag className={twMerge([variants({ size, weight }), className])}>
       {children}
     </Tag>
   );

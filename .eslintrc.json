@@ -3,5 +3,9 @@
     "next/core-web-vitals",
     "prettier",
     "plugin:storybook/recommended"
-  ]
+  ],
+  "rules": {
+    "import/no-anonymous-default-export": false,
+    "react/display-name": false
+  }
 }

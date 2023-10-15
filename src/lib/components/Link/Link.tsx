@@ -11,14 +11,14 @@ interface LinkProps extends NextLinkProps {
   external?: boolean;
 }
 
-const Link: React.FC<LinkProps> = ({
+export const Link: React.FC<LinkProps> = ({
   children,
   external,
   ...anchorProps
 }) => {
   return (
     <NextLink target={external ? '_blank' : undefined} {...anchorProps} >
-        {children}
+      {children}
     </NextLink>
   );
 };

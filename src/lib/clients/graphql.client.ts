@@ -2,6 +2,7 @@ import { GraphQLClient as GQLC } from 'graphql-request';
 
 export interface GraphQLClient {
   request(
+    url: string,
     query: string,
     variables?: Record<string, any>,
     headers?: Record<string, string>
@@ -9,18 +10,15 @@ export interface GraphQLClient {
 }
 
 export class GraphQLRequestClient implements GraphQLClient {
-  private client: GQLC;
-
-  constructor(url: string) {
-    this.client = new GQLC(url);
-  }
-
   request(
+    url: string,
     query: string,
     variables?: Record<string, any>,
     headers?: Record<string, string>
   ): Promise<any> {
-    return this.client.request(query, variables, headers);
+    const client = new GQLC(url);
+
+    return client.request(query, variables, headers);
   }
 }
 

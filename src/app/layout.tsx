@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Analytics from '@/config/Analytics';
 import defaultMetadata from './metadata';
 import '@/styles/globals.scss';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   ...defaultMetadata,
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="pt-br">
       <Analytics />
 
-      <body>{children}</body>
+      <body className="bg-slate-50">
+        {children}
+      </body>
     </html>
   );
 }

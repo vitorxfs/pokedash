@@ -1,81 +1,33 @@
 import { omitBy, isNil } from 'lodash';
 
-import { POKEAPI_BASE_URL } from '@/env';
-import GraphQLRequestClient from '@/lib/clients/graphql.client';
+import { buildUrl } from '@/helpers/url.helper';
+import { PokemonList, PokemonListFilters } from '@/lib/clients/pokemon.client';
+import { WEBSITE_URL } from '@/env';
 
-interface Pokemon {
-  id: number;
-  name: string;
-  types: string[];
-}
-
-interface PokemonFilters {
-  name?: string;
-}
-
-interface usePokemonListAttr {
-  filters?: PokemonFilters;
+interface PokemonListQueryParams {
+  filters: string;
   limit?: number;
   offset?: number;
-  orderBy?: Record<string, 'asc' | 'desc'>;
 }
 
-const query = `
-  query samplePokeAPIquery(
-    $limit: Int,
-    $offset: Int,
-    $orderBy: [pokemon_v2_pokemon_order_by!],
-    $where: pokemon_v2_pokemon_bool_exp
-  ) {
-    pokemon_v2_pokemon(
-      limit: $limit,
-      offset: $offset,
-      order_by: $orderBy,
-      where: $where,
-    ) {
-      name
-      id
-      pokemon_v2_pokemontypes {
-        id
-        pokemon_v2_type {
-          name
-        }
-      }
-    }
+export const usePokemonList = async (params: Record<string, string | string[] | undefined>): Promise<PokemonList[]> => {
+  const url = buildUrl(WEBSITE_URL, '/api/pokemons', buildQueryParams(params));
+
+  const { pokemons } = await (await fetch(url)).json();
+
+  return pokemons;
+}
+
+const buildQueryParams = (params: Record<string, any>): PokemonListQueryParams => {
+  const filters: PokemonListFilters = {
+    name: params.name,
   }
-`;
 
-const buildWhereClause = (filters: PokemonFilters) => {
-  return omitBy({
-    name: {_ilike: `%${filters?.name}%`},
-  }, isNil);
+  return {
+    filters: JSON.stringify(omitBy(filters, isNil)),
+    limit: params.limit || 10,
+    offset: params.offset || 0,
+  };
 }
 
-const buildPokemonList = (pokemons: any): Pokemon[] => {
-  return pokemons.pokemon_v2_pokemon.map((pokemon: any) => ({
-    id: pokemon.id,
-    name: pokemon.name,
-    types: pokemon.pokemon_v2_pokemontypes.map((type: any) =>
-      type.pokemon_v2_type.name)
-  }))
-}
-
-export const usePokemonList = async ({
-  filters = {},
-  limit = 10,
-  offset = 0,
-  orderBy = { name: 'asc' },
-}: usePokemonListAttr): Promise<Pokemon[]> => {
-  const where = buildWhereClause(filters);
-
-  const graphQlClient = new GraphQLRequestClient(POKEAPI_BASE_URL);
-
-  const response = await graphQlClient.request(query, {
-    limit,
-    offset,
-    orderBy,
-    where
-  });
-
-  return buildPokemonList(response);
-}
+export default usePokemonList;

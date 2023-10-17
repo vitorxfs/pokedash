@@ -1,6 +1,12 @@
-import { omitBy, isNil } from 'lodash';
+import { omitBy, isNil, isPlainObject } from 'lodash';
 
 export const buildQueryString = (params: Record<string, any>): string => {
+  Object.keys(params).forEach((k) => {
+    if (isPlainObject(params[k])) {
+      params[k] = JSON.stringify(params[k]);
+    }
+  });
+
   const urlSearchParams = new URLSearchParams(omitBy(params, isNil));
   return urlSearchParams.toString();
 }
@@ -28,6 +34,6 @@ export const buildUrl = (
   if (query && typeof query === 'object') {
     query = buildQueryString(query);
   }
-
+  query = query.replace(/^\?/, '')
   return [url, query].join('?');
 }

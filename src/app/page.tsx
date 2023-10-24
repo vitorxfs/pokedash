@@ -4,25 +4,19 @@ import { Suspense } from 'react';
 import { PageProps } from '@/lib/next/page';
 import { usePokemonList } from '@/hooks/usePokemonList';
 import PokemonList from '@/layout/PokemonList';
-import { WEBSITE_URL } from '@/env';
-import { buildUrl } from '@/helpers/url.helper';
+import PokemonSearch from '@/layout/PokemonSearch';
 
 export const metadata: Metadata = {
   title: 'Index Page',
 }
 
-export const Home = async ({ searchParams }: PageProps) => {
-  const pokemons = await usePokemonList(searchParams);
-
+export default function Home ({ searchParams }: PageProps) {
   return (
     <main>
-      <Suspense>
-        <PokemonList pokemons={pokemons} />
+      <PokemonSearch />
+      <Suspense fallback="loading...">
+        <PokemonList searchParams={searchParams} />
       </Suspense>
     </main>
   );
 };
-
-export default Home;
-
-export const revalidate = 1;

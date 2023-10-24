@@ -17,7 +17,7 @@ export const buildUrl = (
   baseUrl: string,
   path: string | string[],
   query?: string | QueryObject,
-) => {
+): string => {
   if (typeof path === 'string') {
     path = [path];
   }
@@ -36,4 +36,21 @@ export const buildUrl = (
   }
   query = query.replace(/^\?/, '')
   return [url, query].join('?');
+}
+
+export const addSearchParam = (params: string, parameter: string, value: any): string => {
+  if (isPlainObject(value)) {
+    value = JSON.stringify(value);
+  }
+  const urlSearchParams = new URLSearchParams(params);
+  urlSearchParams.set(parameter, value);
+
+  return urlSearchParams.toString();
+}
+
+export const removeSearchParam = (params: string, parameter: string): string => {
+  const urlSearchParams = new URLSearchParams(params);
+  urlSearchParams.delete(parameter)
+
+  return urlSearchParams.toString();
 }

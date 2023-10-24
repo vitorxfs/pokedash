@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { buildQueryString, buildUrl } from '@/helpers/url.helper';
+import { addSearchParam, buildQueryString, buildUrl, removeSearchParam } from '@/helpers/url.helper';
 
 describe('URL Helper', () => {
   describe('buildQueryString', () => {
@@ -70,5 +70,39 @@ describe('URL Helper', () => {
 
       expect(url).toBe('http://example.com/path1/path2?string=string&number=number');
     });
-  })
+  });
+
+  describe('addSearchParam', () => {
+    it('adds parameter to search params', () => {
+      const params = addSearchParam('param1=value1&param2=value2', 'param3', 'value3');
+
+      expect(params).toBe('param1=value1&param2=value2&param3=value3');
+    });
+
+    it('adds array parameter to search params', () => {
+      const params = addSearchParam('param1=value1&param2=value2', 'param3', ['value31', 'value32']);
+
+      expect(params).toBe('param1=value1&param2=value2&param3=value31%2Cvalue32');
+    });
+
+    it('adds object parameter to search params', () => {
+      const params = addSearchParam('param1=value1&param2=value2', 'obj', { objParameter: 'objValue' });
+
+      expect(params).toBe('param1=value1&param2=value2&obj=%7B%22objParameter%22%3A%22objValue%22%7D');
+    });
+
+    it('adds parameter to empty search params', () => {
+      const params = addSearchParam('', 'param3', 'value3');
+
+      expect(params).toBe('param3=value3');
+    });
+  });
+
+  describe('removeSearchParam', () => {
+    it('removes parameter from search params', () => {
+      const params = removeSearchParam('param1=value1&param2=value2&param3=value3', 'param2');
+
+      expect(params).toBe('param1=value1&param3=value3');
+    });
+  });
 });

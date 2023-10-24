@@ -5,7 +5,7 @@
     "plugin:storybook/recommended"
   ],
   "rules": {
-    "import/no-anonymous-default-export": false,
-    "react/display-name": false
+    "import/no-anonymous-default-export": 0,
+    "react/display-name": 0
   }
 }

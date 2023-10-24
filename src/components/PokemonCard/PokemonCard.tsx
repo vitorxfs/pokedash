@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import Image from '@/lib/components/Image';
@@ -6,6 +6,7 @@ import PokemonType from '@/data-types/types';
 import PokemonTypeIcon from '@/components/PokemonTypeIcon';
 import Typography from '@/components/Typography';
 import { pokemonNameFormat } from '@/helpers/pokemon.helper';
+import DefaultImage from './DefaultImage';
 
 export interface PokemonCardProps {
   className?: string;
@@ -38,6 +39,9 @@ export const PokemonCard = ({ className, name, types, exp, img, hoverEffects=fal
         width={100} height={100}
         alt={`${name} sprite`}
         className="absolute top-[-50px]"
+        loading="lazy"
+        placeholder="blur"
+        blurDataURL="/assets/placeholders/ditto.svg"
       />
 
       <Typography tag='p' size="lg" className="text-center mb-2 font-medium text-zinc-700 capitalize">
@@ -51,7 +55,7 @@ export const PokemonCard = ({ className, name, types, exp, img, hoverEffects=fal
 
         <span className="flex gap-1">
           {types.map((type) => (
-            <PokemonTypeIcon type={type} size="sm" />
+            <PokemonTypeIcon key={type} type={type} size="sm" />
           ))}
         </span>
       </div>

@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <Analytics />
 
-      <body className="bg-slate-50">
+      <body>
         {children}
       </body>
     </html>

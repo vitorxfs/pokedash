@@ -31,4 +31,4 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ pokemons });
 }
 
-export const revalidate = 30; //60 * 60 * 5; // 5 hours
+export const revalidate = 'force-cache';

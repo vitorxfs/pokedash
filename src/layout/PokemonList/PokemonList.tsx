@@ -1,12 +1,15 @@
 import PokemonCard from '@/components/PokemonCard';
 import PokemonType from '@/data-types/types';
+import usePokemonList from '@/hooks/usePokemonList';
 import { PokemonList } from '@/lib/clients/pokemon.client';
 
 interface PokemonListProps {
-  pokemons: PokemonList[]
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
-const PokemonList = ({ pokemons }: PokemonListProps) => {
+const PokemonList = async ({ searchParams }: PokemonListProps) => {
+  const pokemons = await usePokemonList(searchParams);
+
   return (
     <div className='grid md:grid-cols-5 gap-4 mt-10'>
       {pokemons.map((pokemon: PokemonList, i) => (

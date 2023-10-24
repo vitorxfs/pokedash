@@ -14,9 +14,10 @@ export interface SvgIconProps {
   children?: React.ReactNode;
   size?: keyof typeof sizes;
   viewBoxSize?: number;
+  className?: string;
 }
 
-const SvgIcon = ({ ariaLabel='', children, size='md', viewBoxSize }: SvgIconProps) => {
+const SvgIcon = ({ ariaLabel='', children, size='md', viewBoxSize, className }: SvgIconProps) => {
   return (
     <svg
       aria-label={ariaLabel}
@@ -25,6 +26,7 @@ const SvgIcon = ({ ariaLabel='', children, size='md', viewBoxSize }: SvgIconProp
       fill="currentColor"
       viewBox={viewBoxSize ? `0 0 ${viewBoxSize} ${viewBoxSize}` : undefined}
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       {children}
     </svg>

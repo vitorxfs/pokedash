@@ -1,9 +1,12 @@
 "use client"
 
-import Search from '@/components/Search';
-import { addSearchParam, removeSearchParam } from '@/helpers/url.helper';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+
+import { addSearchParam, removeSearchParam } from '@/helpers/url.helper';
+import Search from '@/components/Search';
+
+const FIELDNAME = 'name';
 
 export interface PokemonSearchProps { }
 
@@ -12,15 +15,15 @@ export const PokemonSearch: React.FC<PokemonSearchProps> = ({}) => {
   const searchParams = useSearchParams();
   const path = usePathname();
 
-  const value = searchParams.get('name') || undefined;
+  const value = searchParams.get(FIELDNAME) || undefined;
 
   const onSubmit = (query: string) => {
     let params;
 
     if (!query) {
-      params = removeSearchParam(searchParams.toString(), 'name');
+      params = removeSearchParam(searchParams.toString(), FIELDNAME);
     } else {
-      params = addSearchParam(searchParams.toString(), 'name', query);
+      params = addSearchParam(searchParams.toString(), FIELDNAME, query);
     }
 
     const url = [path, params].join('?');

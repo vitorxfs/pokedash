@@ -8,6 +8,7 @@ interface PokemonListQueryParams {
   filters: string;
   limit?: number;
   offset?: number;
+  orderBy?: string;
 }
 
 export const usePokemonList = async (params: Record<string, string | string[] | undefined>): Promise<PokemonList[]> => {
@@ -23,10 +24,13 @@ const buildQueryParams = (params: Record<string, any>): PokemonListQueryParams =
     name: params.name,
   }
 
+  const [ orderBy, order ] = params.orderBy ? params.orderBy.split('/') : ['id'];
+
   return {
     filters: JSON.stringify(omitBy(filters, isNil)),
-    limit: params.limit || 10,
+    limit: params.limit || 12,
     offset: params.offset || 0,
+    orderBy: JSON.stringify({ [orderBy]: order || 'asc' }),
   };
 }
 

@@ -1,7 +1,8 @@
-import { getPokemonClient } from '@/factories';
 import { isNil, omitBy } from 'lodash';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+
+import { getPokemonClient } from '@/factories';
 
 const searchParamsSchema = z.object({
   filters: z.object({
@@ -23,7 +24,7 @@ export async function GET(req: NextRequest) {
     filters: JSON.parse(searchParams.get('filters') || ''),
     limit: searchParams.get('limit') ? Number(searchParams.get('limit')) : undefined,
     offset: searchParams.get('offset') ? Number(searchParams.get('offset')) : undefined,
-    orderBy: searchParams.get('orderBy'),
+    orderBy: JSON.parse(searchParams.get('orderBy') || ''),
   }, isNil));
 
   const pokemons = await pokemonClient.getPokemons(params);

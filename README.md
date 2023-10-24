@@ -2,7 +2,7 @@
 
 This is a Pokémon Dashboard built with NextJS
 
-## In this project is configured
+## This project was built with
 
 - pnpm
 - NextJS 13
@@ -10,7 +10,9 @@ This is a Pokémon Dashboard built with NextJS
 - Prettier
 - Sass
 - TailwindCSS
-- Next SEO
+- RadixUI
+- Storybook
+- Vitest
 - Next Sitemap
 - Google Analytics
 
@@ -33,3 +35,31 @@ pnpm run postbuild
 The script `postbuild` will create the sitemap as well as the `robots.txt` file for SEO.
 
 The boilerplate used for this project can be found at [vitorxfs/next-blank-app](https://github.com/vitorxfs/next-blank-app/tree/app-directory)
+
+## Project Structure
+
+```
+src/
+|--app/
+|  '-api/
+|--components/
+|--config/
+|--data-types/
+|--helpers/
+|--hooks/
+|--layout/
+|--lib/
+|  |-clients/
+|  |-components/
+|  '-next/
+|--styles/
+|--env.ts
+'--factories.ts
+```
+
+- `factories.ts` centralizes the classes instantiation
+- `env.ts` exports environment variables
+
+### Architecture
+
+![Diagram](assets/diagram.png)

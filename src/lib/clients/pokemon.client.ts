@@ -1,9 +1,14 @@
-export interface PokemonList {
+export interface Pokemon {
   id: number;
   name: string;
   types: string[];
   spriteUrl: string;
   exp: number;
+}
+
+export interface PokemonList {
+  pokemons: Pokemon[],
+  count: number;
 }
 
 export interface PokemonListFilters {
@@ -18,5 +23,5 @@ export interface GetPokemonsAttr {
 }
 
 export interface PokemonClient {
-  getPokemons(attr: GetPokemonsAttr): Promise<PokemonList[]>;
+  getPokemons(attr: GetPokemonsAttr): Promise<PokemonList>;
 }

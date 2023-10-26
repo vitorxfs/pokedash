@@ -2,7 +2,13 @@ import { isNil, omitBy } from 'lodash';
 
 import { GraphQLClient } from '@/lib/clients/graphql.client';
 import { POKEAPI_BASE_URL, POKEAPI_SPRITE_BASE_URL } from '@/env';
-import { PokemonClient, PokemonList, PokemonListFilters, GetPokemonsAttr } from '@/lib/clients/pokemon.client';
+import {
+  PokemonClient,
+  PokemonList,
+  PokemonListFilters,
+  GetPokemonsAttr,
+  Pokemon,
+} from '@/lib/clients/pokemon.client';
 import { pokemonListQuery } from './queries';
 
 interface PokeAPIGraphqlClientAdapterDependencies {
@@ -21,7 +27,7 @@ class PokeAPIGraphqlClientAdapter implements PokemonClient {
     limit = 10,
     offset = 0,
     orderBy,
-  }: GetPokemonsAttr): Promise<PokemonList[]> {
+  }: GetPokemonsAttr): Promise<PokemonList> {
     const where = this.buildWhereClause(filters);
 
     const response = await this.graphqlClient.request(POKEAPI_BASE_URL, pokemonListQuery, omitBy({
@@ -31,7 +37,10 @@ class PokeAPIGraphqlClientAdapter implements PokemonClient {
       where
     }, isNil));
 
-    return this.buildPokemonList(response);
+    return {
+      pokemons: this.buildPokemonList(response),
+      count: response.pokemon_v2_pokemon_aggregate.aggregate.count,
+    };
   }
 
   private buildWhereClause(filters: PokemonListFilters): Record<string, any> {
@@ -40,8 +49,8 @@ class PokeAPIGraphqlClientAdapter implements PokemonClient {
     }, isNil);
   }
 
-  private buildPokemonList(pokemons: any): PokemonList[] {
-    return pokemons.pokemon_v2_pokemon.map((pokemon: any): PokemonList => ({
+  private buildPokemonList(pokemons: any): Pokemon[] {
+    return pokemons.pokemon_v2_pokemon.map((pokemon: any): Pokemon => ({
       id: pokemon.id,
       name: pokemon.name,
       types: pokemon.pokemon_v2_pokemontypes.map((type: any) =>

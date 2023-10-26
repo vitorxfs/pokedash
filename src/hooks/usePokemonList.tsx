@@ -11,12 +11,12 @@ interface PokemonListQueryParams {
   orderBy?: string;
 }
 
-export const usePokemonList = async (params: Record<string, string | string[] | undefined>): Promise<PokemonList[]> => {
+export const usePokemonList = async (params: Record<string, string | string[] | undefined>): Promise<PokemonList> => {
   const url = buildUrl(WEBSITE_URL, '/api/pokemons', buildQueryParams(params));
 
-  const { pokemons } = await (await fetch(url)).json();
+  const { count, pokemons } = await (await fetch(url)).json();
 
-  return pokemons;
+  return { count, pokemons };
 }
 
 const buildQueryParams = (params: Record<string, any>): PokemonListQueryParams => {

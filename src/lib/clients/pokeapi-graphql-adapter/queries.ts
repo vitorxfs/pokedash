@@ -5,6 +5,13 @@ export const pokemonListQuery = `
     $orderBy: [pokemon_v2_pokemon_order_by!],
     $where: pokemon_v2_pokemon_bool_exp
   ) {
+    pokemon_v2_pokemon_aggregate(
+      where: $where,
+    ) {
+      aggregate {
+        count
+      }
+    }
     pokemon_v2_pokemon(
       limit: $limit,
       offset: $offset,

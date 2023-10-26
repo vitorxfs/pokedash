@@ -11,7 +11,7 @@ describe('PokeAPI Graphql Client Adapter', () => {
     it('fetches pokemons', async () => {
       const pokemons = await pokemonClient.getPokemons({});
 
-      expect(pokemons).toMatchObject([MOCKED_POKEMON_RESULT])
+      expect(pokemons).toMatchObject(MOCKED_POKEMON_RESULT);
     });
   });
 });

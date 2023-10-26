@@ -4,6 +4,6 @@ export const WEBSITE_URL = process.env.NEXT_PUBLIC_WEBSITE_URL || 'http://localh
 // #endregion Public Keys
 
 // #region Private Keys
-export const POKEAPI_BASE_URL = process.env.POKEAPI_BASE_URL || '';
+export const POKEAPI_BASE_URL = process.env.POKEAPI_BASE_URL || 'https://beta.pokeapi.co/graphql/v1beta';
 export const POKEAPI_SPRITE_BASE_URL = process.env.POKEAPI_SPRITE_BASE_URL || 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
 // #endregion Private Keys

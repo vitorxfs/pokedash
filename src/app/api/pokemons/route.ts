@@ -27,9 +27,9 @@ export async function GET(req: NextRequest) {
     orderBy: JSON.parse(searchParams.get('orderBy') || ''),
   }, isNil));
 
-  const pokemons = await pokemonClient.getPokemons(params);
+  const { count, pokemons } = await pokemonClient.getPokemons(params);
 
-  return NextResponse.json({ pokemons });
+  return NextResponse.json({ count, pokemons });
 }
 
 export const revalidate = 'force-cache';

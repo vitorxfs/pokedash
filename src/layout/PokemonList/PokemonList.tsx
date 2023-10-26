@@ -1,4 +1,4 @@
-import { PokemonList } from '@/lib/clients/pokemon.client';
+import type { Pokemon, PokemonList } from '@/lib/clients/pokemon.client';
 import PokemonCard from '@/components/PokemonCard';
 import PokemonType from '@/data-types/types';
 import usePokemonList from '@/hooks/usePokemonList';
@@ -8,11 +8,13 @@ interface PokemonListProps {
 }
 
 const PokemonList = async ({ searchParams }: PokemonListProps) => {
-  const pokemons = await usePokemonList(searchParams);
+  const { pokemons, count } = await usePokemonList(searchParams);
+
+  console.log(count)
 
   return (
     <div className='grid md:grid-cols-3 gap-4 mt-10'>
-      {pokemons.map((pokemon: PokemonList, i) => (
+      {pokemons.map((pokemon: Pokemon, i) => (
         <PokemonCard
           key={pokemon.id}
           name={pokemon.name}

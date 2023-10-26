@@ -10,8 +10,6 @@ interface PokemonListProps {
 const PokemonList = async ({ searchParams }: PokemonListProps) => {
   const { pokemons, count } = await usePokemonList(searchParams);
 
-  console.log(count)
-
   return (
     <div className='grid md:grid-cols-3 gap-4 mt-10'>
       {pokemons.map((pokemon: Pokemon, i) => (

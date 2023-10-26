@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { twMerge } from 'tailwind-merge';
+
 import * as Filters from '@/components/PokemonFilters';
 import Typography from '@/components/Typography';
 
@@ -9,8 +11,9 @@ export interface PokemonFiltersProps {
 
 export const PokemonFilters: React.FC<PokemonFiltersProps> = ({ className }) => {
   return (
-    <section className={className}>
+    <section className={twMerge('flex flex-col gap-8', className)}>
       <Filters.SortBy />
+      <Filters.Types />
     </section>
   );
 };

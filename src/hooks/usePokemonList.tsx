@@ -22,6 +22,7 @@ export const usePokemonList = async (params: Record<string, string | string[] | 
 const buildQueryParams = (params: Record<string, any>): PokemonListQueryParams => {
   const filters: PokemonListFilters = {
     name: params.name,
+    types: params.types?.split(','),
   }
 
   const [ orderBy, order ] = params.orderBy ? params.orderBy.split('/') : ['id'];

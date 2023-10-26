@@ -46,6 +46,7 @@ class PokeAPIGraphqlClientAdapter implements PokemonClient {
   private buildWhereClause(filters: PokemonListFilters): Record<string, any> {
     return omitBy({
       name: filters.name ? { _ilike: `%${filters?.name}%` } : undefined,
+      'pokemon_v2_pokemontypes': filters.types ? { 'pokemon_v2_type': { name: { _regex: filters.types.join('|') } } }: undefined,
     }, isNil);
   }
 

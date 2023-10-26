@@ -13,6 +13,7 @@ export interface PokemonList {
 
 export interface PokemonListFilters {
   name?: string;
+  types?: string[]
 }
 
 export interface GetPokemonsAttr {

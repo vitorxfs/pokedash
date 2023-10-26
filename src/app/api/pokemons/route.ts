@@ -7,6 +7,7 @@ import { getPokemonClient } from '@/factories';
 const searchParamsSchema = z.object({
   filters: z.object({
     name: z.string().optional(),
+    types: z.array(z.string()).optional(),
   }).optional(),
   limit: z.number().optional().default(10),
   offset: z.number().optional().default(0),

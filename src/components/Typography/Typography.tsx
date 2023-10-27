@@ -45,7 +45,13 @@ const variants = tv({
   }
 })
 
-export const Typography: React.FC<TypographyProps> = ({ children, className, size, tag, weight }) => {
+export const Typography: React.FC<TypographyProps> = ({
+  children,
+  className,
+  size = 'md',
+  tag,
+  weight = 'normal',
+}) => {
   const Tag = tag as any;
 
   return (
@@ -53,12 +59,6 @@ export const Typography: React.FC<TypographyProps> = ({ children, className, siz
       {children}
     </Tag>
   );
-}
-
-Typography.defaultProps = {
-  size: 'md',
-  weight: 'normal',
-  className: '',
 }
 
 export default Typography;

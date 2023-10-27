@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { twMerge } from 'tailwind-merge';
 
 export interface DefaultImageProps {
@@ -14,7 +15,5 @@ export const DefaultImage: React.FC<DefaultImageProps> = ({className}) => {
     </div>
   );
 };
-
-DefaultImage.defaultProps = {};
 
 export default DefaultImage;

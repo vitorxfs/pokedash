@@ -12,11 +12,7 @@ export interface PaginationProps {
 
 export const Pagination: React.FC<PaginationProps> = ({ page, totalPages, onChange }) => {
   const pages = useMemo(() => {
-    const p = [page-2, page-1, page, page+1, page+2].filter((i) => i > 0 && i <= totalPages);
-
-    if (page < totalPages - 2 && page >= 4) {
-      return p.slice(1, 5)
-    }
+    const p = [page-1, page, page+1].filter((i) => i > 0 && i <= totalPages);
 
     return p;
   }, [page, totalPages]);
@@ -44,14 +40,14 @@ export const Pagination: React.FC<PaginationProps> = ({ page, totalPages, onChan
   return (
     <div className="flex gap-1">
       {page !== 1 && <Navigation direction="backward" onClick={onBackward} />}
-      {page >= 4 && (
+      {page >= 3 && (
         <>
           <PageNumber onClick={onFirst}>1</PageNumber>
           <span className="mt-3 mx-2">...</span>
         </>
       )}
       {pages.map((p) => <PageNumber onClick={() => onClick(p)} current={page === p} key={p}>{p}</PageNumber>)}
-      {totalPages > 3 && page < totalPages - 2 && (
+      {totalPages > 3 && page < totalPages - 1 && (
         <>
           <span className="mt-3 mx-2">...</span>
           <PageNumber onClick={onLast}>{totalPages}</PageNumber>

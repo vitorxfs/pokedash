@@ -2,13 +2,13 @@ import React from 'react';
 
 import {
   Content as SelectContent,
-  Portal,
-  Viewport,
-  ScrollUpButton,
-  ScrollDownButton,
   Item,
+  ItemIndicator,
   ItemText,
-  ItemIndicator
+  Portal,
+  ScrollDownButton,
+  ScrollUpButton,
+  Viewport,
 } from '@radix-ui/react-select';
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
 
@@ -19,7 +19,7 @@ export interface ContentProps {
 export const Content: React.FC<ContentProps> = ({ items }) => {
   return (
     <Portal>
-      <SelectContent className="overflow-hidden bg-white rounded-2xl shadow-xl">
+      <SelectContent className="overflow-hidden bg-white rounded-2xl shadow-xl z-20">
         <ScrollUpButton className="SelectScrollButton">
           <ChevronUpIcon />
         </ScrollUpButton>
@@ -44,7 +44,5 @@ export const Content: React.FC<ContentProps> = ({ items }) => {
     </Portal>
   );
 };
-
-Content.defaultProps = {};
 
 export default Content;

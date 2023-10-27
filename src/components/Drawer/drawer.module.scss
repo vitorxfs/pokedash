@@ -1,0 +1,51 @@
+.dialog[data-state="closed"][data-side="left"] {
+  animation: leaveLeft 200ms normal;
+}
+
+.dialog[data-state="open"][data-side="left"] {
+  animation: enterLeft 200ms normal;
+}
+
+.dialog[data-state="closed"][data-side="right"] {
+  animation: leaveRight 200ms normal;
+}
+
+.dialog[data-state="open"][data-side="right"] {
+  animation: enterRight 200ms normal;
+}
+
+@keyframes enterLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes leaveLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes enterRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes leaveRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

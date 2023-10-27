@@ -15,12 +15,12 @@ export const PokemonFiltersDrawer: React.FC<PokemonFiltersDrawerProps> = ({}) =>
         <IconButton
           name="filter"
           className="fixed top-4 right-4 md:hidden bg-white shadow-lg z-10"
-          aria-label="open filters"
+          ariaLabel="open filters"
         />
       </Drawer.Trigger>
       <Drawer.Content side="right">
         <Drawer.Close>
-          <IconButton name="close" aria-label="close filters"/>
+          <IconButton name="close" ariaLabel="close filters"/>
         </Drawer.Close>
         <PokemonFilters className="w-full mt-8"/>
       </Drawer.Content>

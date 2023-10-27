@@ -82,20 +82,23 @@ export const PokemonTypesFilter: React.FC<PokemonTypesFilterProps> = ({}) => {
   return (
     <PokemonFilterCard title="types">
       <div className="flex flex-wrap gap-4 justify-center">
-        {items.map((item: PokemonType) => (
-          <button
-            key={item}
-            aria-label={`filter by ${item} type`}
-            onClick={() => onToggleFilter(item)}
-            data-selected={selectedTypes.includes(item)}
-            className={twMerge(
-              'rounded-full w-11 h-11 flex items-center justify-center',
-              classes.item,
-            )}
-          >
-            <PokemonTypeIcon size="md" type={item}/>
-          </button>
-        ))}
+        {items.map((item: PokemonType) => {
+          const isSelected = selectedTypes.includes(item);
+          return (
+            <button
+              key={item}
+              aria-label={`${item} type filter ${isSelected ? 'selected' : ''} `}
+              onClick={() => onToggleFilter(item)}
+              data-selected={isSelected}
+              className={twMerge(
+                'rounded-full w-11 h-11 flex items-center justify-center',
+                classes.item,
+              )}
+            >
+              <PokemonTypeIcon size="md" type={item}/>
+            </button>
+          );
+        })}
       </div>
     </PokemonFilterCard>
   );

@@ -29,8 +29,9 @@ export const Search: React.FC<SearchProps> = ({ onSubmit: submit, placeholder, v
         value={searchField}
         onChange={onChangeSearchField}
         className="w-full h-full text-lg py-3 px-4 rounded-l-full rounded-r-none"
+        aria-label="search field"
       />
-      <button type="submit" className="pl-4 pr-5 h-full bg-gray-200 rounded-r-full">
+      <button type="submit" className="pl-4 pr-5 h-full bg-gray-200 rounded-r-full" aria-label="search">
         <Icon name="search" size='sm' className="text-slate-700"/>
       </button>
     </form>

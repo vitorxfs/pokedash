@@ -14,6 +14,16 @@ export const Pagination: React.FC<PaginationProps> = ({ page, totalPages, onChan
   const pages = useMemo(() => {
     const p = [page-1, page, page+1].filter((i) => i > 0 && i <= totalPages);
 
+    if (totalPages !== 3) { return p; }
+
+    if (page === 1) {
+      return [...p, 3]
+    }
+
+    if (page === 3) {
+      return [1, ...p];
+    }
+
     return p;
   }, [page, totalPages]);
 
@@ -37,10 +47,14 @@ export const Pagination: React.FC<PaginationProps> = ({ page, totalPages, onChan
     onChange(1);
   }, [onChange]);
 
+  if (totalPages === 1) {
+    return <></>;
+  }
+
   return (
     <div className="flex gap-1">
       {page !== 1 && <Navigation ariaLabel="go to last page" direction="backward" onClick={onBackward} />}
-      {page >= 3 && (
+      {totalPages > 3 && page >= 3 && (
         <>
           <PageNumber
             ariaLabel={`go to first page`}

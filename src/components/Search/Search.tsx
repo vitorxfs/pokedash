@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Icon from '../Icon/Icon';
 
 export interface SearchProps {
@@ -10,7 +10,7 @@ export interface SearchProps {
 }
 
 export const Search: React.FC<SearchProps> = ({ onSubmit: submit, placeholder, value }: SearchProps) => {
-  const [searchField, setSearchField] = useState<string>(value || '');
+  const [searchField, setSearchField] = useState<string>('');
   const onChangeSearchField: React.ChangeEventHandler<HTMLInputElement> =
     (e) => { setSearchField(e.target.value) }
 
@@ -19,7 +19,11 @@ export const Search: React.FC<SearchProps> = ({ onSubmit: submit, placeholder, v
     e.stopPropagation();
 
     submit(searchField || '');
-  }, [searchField, submit])
+  }, [searchField, submit]);
+
+  useEffect(() => {
+    setSearchField(value || '');
+  }, [value]);
 
   return (
     <form onSubmit={onSubmit} className="h-12 flex items-center border rounded-full">

@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 
 export default function Home ({ searchParams }: PageProps) {
   return (
-    <div className="w-[1216px] mx-auto mt-20 grid grid-flow-row grid-cols-12 gap-8">
-      <div className="col-span-3 flex flex-col items-center">
+    <div className="max-w-[1200px] px-4 mx-auto mt-20 grid grid-flow-row grid-cols-12 gap-8">
+      <div className="lg:col-span-3 md:col-span-4 hidden md:flex flex-col items-center ">
         <Image src="assets/logo.svg" alt="Pokédash logo" width={180} height={100} />
         <PokemonFilters className="w-full mt-[95px]"/>
       </div>
-      <main className="col-span-9">
+      <main className="lg:col-span-9 md:col-span-8 col-span-12">
         <PokemonSearch />
         <Suspense fallback="loading...">
           <PokemonList searchParams={searchParams} />

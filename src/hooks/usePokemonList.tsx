@@ -1,8 +1,8 @@
 import { omitBy, isNil } from 'lodash';
 
 import { buildUrl } from '@/helpers/url.helper';
+import { POKEMON_LIST_LIMIT, WEBSITE_URL } from '@/env';
 import { PokemonList, PokemonListFilters } from '@/lib/clients/pokemon.client';
-import { WEBSITE_URL } from '@/env';
 
 interface PokemonListQueryParams {
   filters: string;
@@ -27,10 +27,12 @@ const buildQueryParams = (params: Record<string, any>): PokemonListQueryParams =
 
   const [ orderBy, order ] = params.orderBy ? params.orderBy.split('/') : ['id'];
 
+  const page = params.page || 1
+
   return {
     filters: JSON.stringify(omitBy(filters, isNil)),
-    limit: params.limit || 12,
-    offset: params.offset || 0,
+    limit: POKEMON_LIST_LIMIT,
+    offset: POKEMON_LIST_LIMIT * (page-1),
     orderBy: JSON.stringify({ [orderBy]: order || 'asc' }),
   };
 }

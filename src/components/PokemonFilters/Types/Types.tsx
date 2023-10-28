@@ -40,6 +40,7 @@ export interface PokemonTypesFilterProps { }
 
 export const PokemonTypesFilter: React.FC<PokemonTypesFilterProps> = ({}) => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [optimistic, setOptimistic] = useState<{ type?: string, selected?: boolean }>({});
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -62,8 +63,10 @@ export const PokemonTypesFilter: React.FC<PokemonTypesFilterProps> = ({}) => {
     const isSelected = index !== -1;
 
     if (isSelected) {
+      setOptimistic({ type, selected: false });
       updatedSelected = removeByIndex(selectedTypes, index);
     } else {
+      setOptimistic({ type, selected: true });
       updatedSelected = [...selectedTypes, type];
     }
 
@@ -86,7 +89,9 @@ export const PokemonTypesFilter: React.FC<PokemonTypesFilterProps> = ({}) => {
     <PokemonFilterCard title="types">
       <div className="flex flex-wrap gap-4 justify-center">
         {items.map((item: PokemonType) => {
-          const isSelected = selectedTypes.includes(item);
+          const optimisticSelected = optimistic.selected;
+          const isSelected = optimistic.type === item ? optimisticSelected : selectedTypes.includes(item);
+
           return (
             <button
               key={item}

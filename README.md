@@ -2,21 +2,27 @@
 
 This is a Pokémon Dashboard built with NextJS
 
-![Pokedash](assets/pokedash.png)
+[![Pokedash](assets/pokedash.png)](pokedash-snx.vercel.app)
 
 ## This project was built with
+![Next JS](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESlint-4930BD?style=for-the-badge&logo=eslint&logoColor=white)
+![Prettier](https://img.shields.io/badge/Prettier-1A2B33?style=for-the-badge&logo=prettier&logoColor=white)
+![PNPM](https://img.shields.io/badge/pnpm-ffbb00?style=for-the-badge&logo=pnpm&logoColor=white)
+![Sass](https://img.shields.io/badge/Sass-CF649A?style=for-the-badge&logo=sass&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-0099ee?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Radix UI](https://img.shields.io/badge/Radix-5472E4?style=for-the-badge&logo=radixui&logoColor=white)
+![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-729B1B?style=for-the-badge&logo=vitest&logoColor=white)
+![GraphQL](https://img.shields.io/badge/Graphql-DE33A6?style=for-the-badge&logo=graphql&logoColor=white)
+![Github Actions](https://img.shields.io/badge/Github%20actions-266BD7?style=for-the-badge&logo=github&logoColor=white)
 
-- pnpm
-- NextJS 13
-- ESLint
-- Prettier
-- Sass
-- TailwindCSS
-- RadixUI
-- Storybook
-- Vitest
-- Next Sitemap
-- Google Analytics
+
+## See it running
+
+You can see it running at [pokedash-snx.vercel.app](https://pokedash-snx.vercel.app)
+
+The storybook component documentation is also available at [vitorxfs.github.io/pokedash](https://vitorxfs.github.io/pokedash)
 
 ## Running Locally
 

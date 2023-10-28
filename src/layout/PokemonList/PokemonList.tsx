@@ -2,7 +2,7 @@ import { POKEMON_LIST_LIMIT } from '@/env';
 import PokemonCard from '@/components/PokemonCard';
 import PokemonPagination from '../PokemonPagination';
 import PokemonType from '@/data-types/types';
-import type { Pokemon, PokemonList } from '@/lib/clients/pokemon.client';
+import type { Pokemon } from '@/lib/clients/pokemon.client';
 import usePokemonList from '@/hooks/usePokemonList';
 
 interface PokemonListProps {

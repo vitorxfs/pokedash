@@ -45,7 +45,13 @@ export const PokemonPagination: React.FC<PokemonPaginationProps> = ({
     router.replace(url, { scroll: true });
   }, [path, router, searchParams]);
 
-  return (<Pagination page={page} totalPages={totalPages} onChange={onChange}/>);
+  return (
+    <>
+      {totalPages > 1 && (
+        <Pagination page={page} totalPages={totalPages} onChange={onChange}/>
+      )}
+    </>
+  );
 };
 
 export default PokemonPagination;

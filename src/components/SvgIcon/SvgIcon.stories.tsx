@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<SvgIconProps>;
 
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     size: 'md',
     viewBoxSize: 50,

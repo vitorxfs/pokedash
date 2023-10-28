@@ -47,10 +47,6 @@ export const Pagination: React.FC<PaginationProps> = ({ page, totalPages, onChan
     onChange(1);
   }, [onChange]);
 
-  if (totalPages === 1) {
-    return <></>;
-  }
-
   return (
     <div className="flex gap-1">
       {page !== 1 && <Navigation ariaLabel="go to last page" direction="backward" onClick={onBackward} />}

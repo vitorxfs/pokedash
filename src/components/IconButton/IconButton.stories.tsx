@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<IconButtonProps>;
 
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     name: 'chevron_left',
   },

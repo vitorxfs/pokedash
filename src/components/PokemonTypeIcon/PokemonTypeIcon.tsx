@@ -1,6 +1,7 @@
 import * as icons from './icons';
 import PokemonType from '@/data-types/types'
 import SvgIcon, { SvgIconProps } from '@/components/SvgIcon';
+import Tooltip from '@/components/Tooltip';
 
 const colorByType: Record<PokemonType, string> = {
   bug: 'text-green-700',
@@ -30,11 +31,13 @@ export interface PokemonTypeIconProps extends Pick<SvgIconProps, 'size'> {
 const PokemonTypeIcon = ({ type='normal', size }: PokemonTypeIconProps) => {
   const Path = icons[type] as any;
   return (
-    <div className={colorByType[type]} aria-label={`type ${type}`}>
-      <SvgIcon size={size} viewBoxSize={512}>
-        <Path />
-      </SvgIcon>
-    </div>
+    <Tooltip content={(<span className="capitalize">{type}</span>)}>
+      <div className={colorByType[type]} aria-label={`type ${type}`}>
+        <SvgIcon size={size} viewBoxSize={512}>
+          <Path />
+        </SvgIcon>
+      </div>
+    </Tooltip>
   )
 }
 

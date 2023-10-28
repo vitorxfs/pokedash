@@ -19,7 +19,7 @@ export default meta;
 type Story = StoryObj<IconProps>;
 
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     size: 'md',
     name: 'search',

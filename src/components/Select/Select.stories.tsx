@@ -22,7 +22,7 @@ const items = [
 ]
 
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     placeholder: 'Select'
   },

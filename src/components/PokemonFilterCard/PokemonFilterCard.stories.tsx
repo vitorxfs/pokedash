@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<PokemonFilterCardProps>;
 
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     title: 'sort by'
   },

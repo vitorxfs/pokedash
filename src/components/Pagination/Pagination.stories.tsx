@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<PaginationProps>;
 
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     page: 3,
     totalPages: 10,

@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<TypographyProps>;
 
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     size: '2xl',
     weight: 'normal',

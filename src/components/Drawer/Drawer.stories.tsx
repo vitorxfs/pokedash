@@ -17,7 +17,7 @@ type Story = StoryObj<{
   side: 'left' | 'right';
 }>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     side: 'left'
   },

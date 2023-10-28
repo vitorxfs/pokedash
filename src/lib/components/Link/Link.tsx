@@ -8,6 +8,7 @@ type AnchorProps = Omit<
 
 interface LinkProps extends NextLinkProps {
   children: React.ReactNode;
+  className?: string;
   external?: boolean;
 }
 
@@ -17,7 +18,7 @@ export const Link: React.FC<LinkProps> = ({
   ...anchorProps
 }) => {
   return (
-    <NextLink target={external ? '_blank' : undefined} {...anchorProps} >
+    <NextLink target={external ? '_blank' : undefined} {...anchorProps}>
       {children}
     </NextLink>
   );

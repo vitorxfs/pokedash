@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<PokemonTypeIconProps>;
 
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     type: 'normal',
     size: 'md',

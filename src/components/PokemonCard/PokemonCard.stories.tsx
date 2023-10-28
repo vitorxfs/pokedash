@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<PokemonCardProps>;
 
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     exp: 3200,
     name: 'Charizard',

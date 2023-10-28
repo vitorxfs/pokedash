@@ -31,12 +31,14 @@ export const PokemonSortByFilter: React.FC<PokemonSortByFilterProps> = ({}) => {
   }, [searchParams]);
 
   const onChange = useCallback((val: string) => {
-    let params;
+    let params = searchParams.toString();
+
+    params = removeSearchParam(params, 'page');
 
     if (val === 'id') {
-      params = removeSearchParam(searchParams.toString(), FIELDNAME);
+      params = removeSearchParam(params, FIELDNAME);
     } else {
-      params = addSearchParam(searchParams.toString(), FIELDNAME, val);
+      params = addSearchParam(params, FIELDNAME, val);
     }
 
     const url = [path, params].join('?');

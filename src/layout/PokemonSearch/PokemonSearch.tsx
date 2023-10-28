@@ -18,12 +18,14 @@ export const PokemonSearch: React.FC<PokemonSearchProps> = ({}) => {
   const value = searchParams.get(FIELDNAME) || undefined;
 
   const onSubmit = (query: string) => {
-    let params;
+    let params = searchParams.toString()
+
+    params = removeSearchParam(params, 'page');
 
     if (!query) {
-      params = removeSearchParam(searchParams.toString(), FIELDNAME);
+      params = removeSearchParam(params, FIELDNAME);
     } else {
-      params = addSearchParam(searchParams.toString(), FIELDNAME, query);
+      params = addSearchParam(params, FIELDNAME, query);
     }
 
     const url = [path, params].join('?');

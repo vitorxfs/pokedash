@@ -67,11 +67,14 @@ export const PokemonTypesFilter: React.FC<PokemonTypesFilterProps> = ({}) => {
       updatedSelected = [...selectedTypes, type];
     }
 
-    let params = '';
+    let params = searchParams.toString();
+
+    params = removeSearchParam(params, 'page');
+
     if (!updatedSelected.length) {
-      params = removeSearchParam(searchParams.toString(), FIELDNAME)
+      params = removeSearchParam(params, FIELDNAME)
     } else {
-      params = addSearchParam(searchParams.toString(), FIELDNAME, updatedSelected);
+      params = addSearchParam(params, FIELDNAME, updatedSelected);
     }
 
     const url = [path, params].join('?');

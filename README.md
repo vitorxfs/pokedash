@@ -2,7 +2,7 @@
 
 This is a Pokémon Dashboard built with NextJS
 
-[![Pokedash](assets/pokedash.png)](pokedash-snx.vercel.app)
+[![Pokedash](assets/pokedash.png)](https://pokedash-snx.vercel.app)
 
 ## This project was built with
 ![Next JS](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
